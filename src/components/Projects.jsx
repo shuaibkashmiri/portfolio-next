@@ -1,6 +1,7 @@
 import React from "react";
 import { PROJECTS } from "../constants";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Projects = () => {
   return (
@@ -31,7 +32,7 @@ const Projects = () => {
             >
               {/* Project Image */}
               <div className="flex justify-center mb-4">
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
                   width={120}

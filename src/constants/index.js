@@ -51,21 +51,29 @@ export const PROJECTS = [
     image: project2,
     description:
       " A digital platform that is designed to facilitate educational and training experiences through electronic devices like smartphones, tablets, or computers.",
-    technologies: ["HTML", "SCSS", "React", "Node" ,"Express","MongoDB","Redux"],
+    technologies: [
+      "HTML",
+      "SCSS",
+      "React",
+      "Node",
+      "Express",
+      "MongoDB",
+      "Redux",
+    ],
   },
   {
     title: " Shop Fusion E-Commerce Website",
     image: project3,
     description:
       " An online garment shop with a wide range of clothing, accessories, and shoes for women, men, kids, and babies. ",
-    technologies: ["HBS", "CSS","Bootstrap","Node","Express","MongoDB"],
+    technologies: ["HBS", "CSS", "Bootstrap", "Node", "Express", "MongoDB"],
   },
   {
     title: "Blogging Platform",
     image: project4,
     description:
       "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-    technologies: ["React","Meterial UI", "Redux" , "Express", "MongoDB"],
+    technologies: ["React", "Meterial UI", "Redux", "Express", "MongoDB"],
   },
 ];
 
@@ -74,3 +82,78 @@ export const CONTACT = {
   phoneNo: "+91 9541697271 ",
   email: "bhatshoaibmushtaq@gmail.com",
 };
+
+export const SERVICES = [
+  {
+    title: "School Management System",
+    description:
+      "Complete solution for educational institutions with student, teacher, and administrative management modules.",
+    icon: "FaSchool",
+    features: [
+      "Student Portal",
+      "Attendance System",
+      "Grade Management",
+      "Library Management",
+    ],
+  },
+  {
+    title: "E-Commerce Solutions",
+    description:
+      "Scalable e-commerce platforms for both single and multiple vendors with complete inventory management.",
+    icon: "FaStore",
+    features: [
+      "Product Management",
+      "Order Processing",
+      "Payment Integration",
+      "Vendor Management",
+    ],
+  },
+  {
+    title: "Hospital Management System",
+    description:
+      "Comprehensive healthcare management system with patient records, appointments, and billing.",
+    icon: "FaHospital",
+    features: [
+      "Patient Records",
+      "Appointment Booking",
+      "Pharmacy Management",
+      "Billing System",
+    ],
+  },
+  {
+    title: "Online Learning Platform",
+    description:
+      "Feature-rich e-learning platform with live classes, course management, and student tracking.",
+    icon: "FaGraduationCap",
+    features: [
+      "Live Classes",
+      "Course Library",
+      "Progress Tracking",
+      "Certificate Generation",
+    ],
+  },
+  {
+    title: "POS Systems",
+    description:
+      "Point of Sale systems for retail and restaurants with inventory and order management.",
+    icon: "FaCashRegister",
+    features: [
+      "Inventory Control",
+      "Order Management",
+      "Payment Processing",
+      "Reports & Analytics",
+    ],
+  },
+  {
+    title: "And Many More...",
+    description:
+      "Custom web applications tailored to your specific business needs. From CRM systems to specialized industry solutions.",
+    icon: "FaPlus",
+    features: [
+      "News & Blog Portals",
+      "Matrimonial Platforms",
+      "Tour & Travel Systems",
+      "Custom Business Solutions",
+    ],
+  },
+];

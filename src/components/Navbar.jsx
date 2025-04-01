@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useState } from "react";
 import logo from "../assets/logodf.png";
 import { HiMenu, HiX } from "react-icons/hi";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +16,7 @@ const Navbar = () => {
     { href: "#hero", text: "Home" },
     { href: "#about", text: "About" },
     { href: "#technologies", text: "Technologies" },
-    { href: "#projects", text: "Projects" },
+    { href: "#services", text: "Services" },
     { href: "#contact", text: "Contact" },
   ];
 
@@ -26,7 +29,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo - Always visible */}
           <div className="flex-shrink-0">
-            <img src={logo} alt="Logo" className="w-36" />
+            <Image
+              src={logo}
+              alt="Logo"
+              width={144}
+              height={144}
+              className="w-36"
+            />
           </div>
 
           {/* Hamburger button - Mobile only */}

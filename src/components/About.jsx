@@ -1,7 +1,7 @@
 import React from "react";
-import aboutImg from "../assets/about.jpg";
 import { ABOUT_TEXT } from "../constants";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -24,10 +24,13 @@ const About = () => {
           className="w-full lg:w-1/2 lg:p-8"
         >
           <div className="flex items-center justify-center">
-            <img
+            <Image
               className="w-80 rounded-2xl shadow-lg lg:w-96"
-              src={aboutImg}
+              src="https://cdn.pixabay.com/photo/2017/03/04/12/15/programming-2115930_960_720.jpg"
               alt="About"
+              width={960}
+              height={720}
+              priority
             />
           </div>
         </motion.div>
