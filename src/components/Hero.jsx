@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900 pt-8 md:pt-24"
+      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900 pt-16 md:pt-24"
     >
       {/* Content Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,7 +60,7 @@ const Hero = () => {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex items-center gap-4">
+              <div className="flex flex-row items-center gap-4 w-full sm:w-auto justify-center lg:justify-start">
                 <a
                   href="#footer"
                   className="bg-cyan-500 text-gray-900 px-6 py-2.5 rounded-full text-base font-semibold hover:bg-cyan-600 transition duration-300"
