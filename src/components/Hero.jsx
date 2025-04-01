@@ -15,15 +15,8 @@ const Hero = () => {
       id="hero"
       className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900"
     >
-      {/* Section Title */}
-      <h1 className="my-16 text-center text-5xl font-bold text-white">
-        <span className="text-white">Shoaib</span>{" "}
-        <span className="text-cyan-400">Mushtaq</span>{" "}
-        <span className="text-cyan-500">Bhat</span>
-      </h1>
-
       {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Text Content */}
           <motion.div
@@ -33,9 +26,14 @@ const Hero = () => {
             className="w-full lg:w-1/2 lg:p-8"
           >
             <div className="flex flex-col items-center lg:items-start">
-              <h2 className="text-xl text-cyan-400 font-medium mb-4">
+              <h2 className="text-xl text-cyan-400 font-medium mb-2">
                 Hello, I'm
               </h2>
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left">
+                <span className="text-white">Shoaib </span>
+                <span className="text-cyan-400">Mushtaq </span>
+                <span className="text-cyan-500">Bhat</span>
+              </h1>
               <div className="text-xl md:text-2xl text-gray-300 h-[40px] mb-4">
                 <TypeAnimation
                   sequence={[
