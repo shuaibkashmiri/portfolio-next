@@ -13,16 +13,16 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="min-h-[75vh] flex items-center justify-center bg-gray-900 py-4 md:py-20"
+      className="scroll-mt-24 min-h-[75vh] flex items-center justify-center bg-gray-900 py-4 md:py-20"
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center md:text-left md:w-1/2"
+            className="w-full md:w-1/2 text-center md:text-left"
           >
             <h2 className="text-base md:text-xl text-cyan-400 font-medium mb-1 md:mb-2">
               Hello, I'm
@@ -84,18 +84,20 @@ const Hero = () => {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:w-1/2 relative"
+            className="w-full md:w-1/2 relative"
           >
-            <div className="relative w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[300px] md:h-[300px] mx-auto">
-              <div className="absolute inset-0 rounded-full bg-cyan-500/20 animate-pulse"></div>
-              <Image
-                src={profilePic}
-                alt="Shoaib Mushtaq Bhat"
-                width={300}
-                height={300}
-                className="rounded-full p-2 relative z-10"
-                priority
-              />
+            <div className="flex items-center justify-center">
+              <div className="relative w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[300px] md:h-[300px]">
+                <div className="absolute inset-0 rounded-full bg-cyan-500/20 animate-pulse"></div>
+                <Image
+                  src={profilePic}
+                  alt="Shoaib Mushtaq Bhat"
+                  width={300}
+                  height={300}
+                  className="rounded-full p-2 relative z-10"
+                  priority
+                />
+              </div>
             </div>
           </motion.div>
         </div>
