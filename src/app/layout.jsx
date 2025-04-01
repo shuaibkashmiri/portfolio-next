@@ -43,7 +43,12 @@ export const metadata = {
     images: ["/og-image.jpg"],
     creator: "@yourtwitterhandle",
   },
-  viewport: "width=device-width, initial-scale=1",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   themeColor: "#111827",
   manifest: "/manifest.json",
   icons: {
@@ -54,12 +59,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.className} overflow-x-hidden text-gray-300 antialiased selection:bg-cyan-400 selection:text-gray-900 bg-gray-900`}
+        className={`${inter.className} overflow-x-hidden text-gray-300 antialiased selection:bg-cyan-400 selection:text-gray-900 bg-gray-900 min-h-screen flex flex-col`}
       >
         <Navbar />
-        <main>{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
         <BackToTop />
         <WhatsAppButton />
