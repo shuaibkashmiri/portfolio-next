@@ -40,7 +40,7 @@ const BackToTop = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-4 right-4 z-50 bg-cyan-500 text-white p-3 rounded-full shadow-lg hover:bg-cyan-600 transition-colors duration-300"
+          className="fixed bottom-4 left-4 z-50 bg-cyan-500 text-white p-3 rounded-full shadow-lg hover:bg-cyan-600 transition-colors duration-300"
           aria-label="Back to top"
         >
           <FaArrowUp className="w-6 h-6" />
