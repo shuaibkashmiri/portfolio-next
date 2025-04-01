@@ -14,7 +14,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
+    <footer id="footer" className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Contact Info */}
@@ -119,7 +119,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-gray-800 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Shoaib Mushtaq Bhat. All rights
+            {new Date().getFullYear()} Shoaib Mushtaq Bhat. All rights
             reserved.
           </p>
         </div>

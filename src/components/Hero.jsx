@@ -13,10 +13,10 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900"
+      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900 pt-8 md:pt-24"
     >
       {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Text Content */}
           <motion.div
@@ -52,22 +52,17 @@ const Hero = () => {
                 />
               </div>
               <div className="space-y-4 mb-6">
-                <p className="text-gray-400 max-w-xl text-center lg:text-left">
-                  I build exceptional and accessible digital experiences for the
-                  web and mobile platforms.
-                </p>
-                <p className="text-gray-400 max-w-xl text-center lg:text-left">
-                  Specializing in creating robust web applications with modern
-                  technologies like React, Next.js, and Node.js. With expertise
-                  in both frontend and backend development, I deliver complete
-                  solutions that drive business growth.
-                </p>
+              <p className="text-gray-400 max-w-xl text-center lg:text-left">
+  I create accessible, growth-driven web and mobile experiences using React, Next.js, and Node.js, delivering full-stack solutions for businesses.
+</p>
+
+
               </div>
 
               {/* CTA Buttons */}
               <div className="flex items-center gap-4">
                 <a
-                  href="#contact"
+                  href="#footer"
                   className="bg-cyan-500 text-gray-900 px-6 py-2.5 rounded-full text-base font-semibold hover:bg-cyan-600 transition duration-300"
                 >
                   Hire Me
