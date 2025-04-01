@@ -30,42 +30,38 @@ const iconVariants = (duration) => ({
 });
 
 const Technologies = () => {
-  const firstRow = [
-    { icon: FaNodeJs, color: "text-green-500", duration: 2.5 },
-    { icon: RiReactjsLine, color: "text-cyan-400", duration: 3 },
-    { icon: SiNextdotjs, color: "text-white", duration: 4 },
-    { icon: TbBrandReactNative, color: "text-blue-400", duration: 3.5 },
-    { icon: SiTypescript, color: "text-blue-600", duration: 4.5 },
+  const technologies = [
+    { icon: FaNodeJs, color: "text-green-500", name: "Node.js", duration: 2.5 },
+    { icon: RiReactjsLine, color: "text-cyan-400", name: "React", duration: 3 },
+    { icon: SiNextdotjs, color: "text-white", name: "Next.js", duration: 4 },
+    {
+      icon: TbBrandReactNative,
+      color: "text-blue-400",
+      name: "React Native",
+      duration: 3.5,
+    },
+    {
+      icon: SiTypescript,
+      color: "text-blue-600",
+      name: "TypeScript",
+      duration: 4.5,
+    },
+    {
+      icon: FaJsSquare,
+      color: "text-yellow-400",
+      name: "JavaScript",
+      duration: 2,
+    },
+    { icon: SiMongodb, color: "text-green-500", name: "MongoDB", duration: 5 },
+    {
+      icon: SiPostgresql,
+      color: "text-blue-400",
+      name: "PostgreSQL",
+      duration: 3.8,
+    },
+    { icon: FaHtml5, color: "text-orange-500", name: "HTML5", duration: 6 },
+    { icon: FaCss3Alt, color: "text-blue-500", name: "CSS3", duration: 4 },
   ];
-
-  const secondRow = [
-    { icon: FaJsSquare, color: "text-yellow-400", duration: 2 },
-    { icon: SiMongodb, color: "text-green-500", duration: 5 },
-    { icon: SiPostgresql, color: "text-blue-400", duration: 3.8 },
-    { icon: FaHtml5, color: "text-orange-500", duration: 6 },
-    { icon: FaCss3Alt, color: "text-blue-500", duration: 4 },
-  ];
-
-  const renderTechRow = (technologies) => (
-    <div className="grid grid-cols-5 gap-2 sm:gap-4 w-full justify-items-center">
-      {technologies.map((tech, index) => {
-        const Icon = tech.icon;
-        return (
-          <motion.div
-            key={index}
-            variants={iconVariants(tech.duration)}
-            initial="initial"
-            animate="animate"
-            className="rounded-xl sm:rounded-2xl border-2 sm:border-4 border-gray-800 p-2 sm:p-6 bg-gray-900 shadow-lg w-full max-w-[80px] sm:max-w-[120px] aspect-square flex items-center justify-center"
-          >
-            <Icon
-              className={`text-3xl sm:text-5xl md:text-7xl ${tech.color}`}
-            />
-          </motion.div>
-        );
-      })}
-    </div>
-  );
 
   return (
     <div
@@ -74,24 +70,48 @@ const Technologies = () => {
     >
       {/* Section Title */}
       <motion.h1
+        initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 1.5 }}
-        className="my-8 sm:my-16 text-center text-4xl sm:text-5xl font-bold text-white"
+        transition={{ duration: 0.5 }}
+        className="my-16 text-center text-4xl md:text-5xl font-bold text-white"
       >
         Technologies
       </motion.h1>
 
       {/* Technologies Grid */}
-      <motion.div
-        whileInView={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: -100 }}
-        transition={{ duration: 1.5 }}
-        className="flex flex-col gap-4 sm:gap-8 px-2 sm:px-4 max-w-7xl mx-auto"
-      >
-        {renderTechRow(firstRow)}
-        {renderTechRow(secondRow)}
-      </motion.div>
+      <div className="max-w-7xl mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
+        >
+          {technologies.map((tech, index) => {
+            const Icon = tech.icon;
+            return (
+              <motion.div
+                key={index}
+                variants={iconVariants(tech.duration)}
+                initial="initial"
+                animate="animate"
+                className="group relative bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition-colors duration-300"
+              >
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-cyan-500/20 rounded-xl transform rotate-3"></div>
+                    <div className="relative p-4 bg-gray-900 rounded-xl">
+                      <Icon className={`text-4xl md:text-5xl ${tech.color}`} />
+                    </div>
+                  </div>
+                  <span className="text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
+                    {tech.name}
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
     </div>
   );
 };
