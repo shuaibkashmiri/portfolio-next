@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900"
+      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900 w-full overflow-x-hidden"
     >
       {/* Section Title */}
       <motion.h1
@@ -20,7 +20,7 @@ const About = () => {
       </motion.h1>
 
       {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Image Section */}
           <motion.div

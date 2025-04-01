@@ -61,10 +61,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.className} overflow-x-hidden text-gray-300 antialiased selection:bg-cyan-400 selection:text-gray-900 bg-gray-900 min-h-screen flex flex-col`}
+        className={`${inter.className} overflow-x-hidden w-screen text-gray-300 antialiased selection:bg-cyan-400 selection:text-gray-900 bg-gray-900 min-h-screen flex flex-col`}
       >
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow w-full overflow-x-hidden">{children}</main>
         <Footer />
         <BackToTop />
         <WhatsAppButton />
