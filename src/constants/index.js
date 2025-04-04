@@ -85,15 +85,15 @@ export const CONTACT = {
 
 export const SERVICES = [
   {
-    title: "School Management System",
+    title: "Travel & Tourism Platform",
     description:
-      "Complete solution for educational institutions with student, teacher, and administrative management modules.",
-    icon: "FaSchool",
+      "Complete travel management system with booking, itinerary planning, and tour package management.",
+    icon: "FaStore",
     features: [
-      "Student Portal",
-      "Attendance System",
-      "Grade Management",
-      "Library Management",
+      "Tour Package Management",
+      "Booking System",
+      "Travel Itinerary",
+      "Customer Management",
     ],
   },
   {
@@ -109,15 +109,15 @@ export const SERVICES = [
     ],
   },
   {
-    title: "Hospital Management System",
+    title: "Hospital & School Management System",
     description:
-      "Comprehensive healthcare management system with patient records, appointments, and billing.",
+      "Comprehensive management system for healthcare and educational institutions with integrated modules for both sectors.",
     icon: "FaHospital",
     features: [
-      "Patient Records",
-      "Appointment Booking",
-      "Pharmacy Management",
-      "Billing System",
+      "Patient/Student Records",
+      "Appointment/Class Scheduling",
+      "Resource Management",
+      "Billing & Fee Management",
     ],
   },
   {
@@ -133,15 +133,15 @@ export const SERVICES = [
     ],
   },
   {
-    title: "POS Systems",
+    title: "Personal Portfolio Websites",
     description:
-      "Point of Sale systems for retail and restaurants with inventory and order management.",
-    icon: "FaCashRegister",
+      "Custom-designed portfolio websites to showcase your work, skills, and professional achievements.",
+    icon: "FaUserTie",
     features: [
-      "Inventory Control",
-      "Order Management",
-      "Payment Processing",
-      "Reports & Analytics",
+      "Responsive Design",
+      "Project Showcase",
+      "Contact Integration",
+      "SEO Optimization",
     ],
   },
   {

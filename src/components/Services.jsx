@@ -2,21 +2,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import { SERVICES } from "../constants";
 import {
-  FaSchool,
   FaStore,
   FaHospital,
   FaGraduationCap,
-  FaCashRegister,
   FaPlus,
+  FaUserTie,
 } from "react-icons/fa";
 
 const iconComponents = {
-  FaSchool,
   FaStore,
   FaHospital,
   FaGraduationCap,
-  FaCashRegister,
   FaPlus,
+  FaUserTie,
 };
 
 const Services = () => {
