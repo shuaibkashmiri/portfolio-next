@@ -7,7 +7,7 @@ import Services from "../components/Services";
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-8">
+    <div className="w-full">
       <Hero />
       <About />
       <Technologies />

@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900 w-full overflow-x-hidden"
+      className="scroll-mt-24 pb-20 bg-black w-full overflow-x-hidden"
     >
       {/* Section Title */}
       <motion.h1
@@ -16,7 +16,7 @@ const About = () => {
         transition={{ duration: 0.5 }}
         className="my-16 text-center text-4xl md:text-5xl font-bold text-white"
       >
-        About <span className="text-cyan-400">Me</span>
+        About <span className="text-purple-400">Me</span>
       </motion.h1>
 
       {/* Content Section */}
@@ -30,7 +30,7 @@ const About = () => {
             className="w-full lg:w-1/2"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-cyan-500/20 rounded-2xl transform rotate-3"></div>
+              <div className="absolute inset-0 bg-purple-500/20 rounded-2xl transform rotate-3"></div>
               <div className="relative">
                 <Image
                   className="w-full rounded-2xl shadow-lg"
@@ -56,14 +56,14 @@ const About = () => {
                 {ABOUT_TEXT}
               </p>
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-800 p-4 rounded-lg">
-                  <h3 className="text-cyan-400 font-semibold mb-2">
+                <div className="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                  <h3 className="text-purple-400 font-semibold mb-2">
                     Experience
                   </h3>
                   <p className="text-gray-300">3+ Years</p>
                 </div>
-                <div className="bg-gray-800 p-4 rounded-lg">
-                  <h3 className="text-cyan-400 font-semibold mb-2">Projects</h3>
+                <div className="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                  <h3 className="text-purple-400 font-semibold mb-2">Projects</h3>
                   <p className="text-gray-300">20+ Completed</p>
                 </div>
               </div>

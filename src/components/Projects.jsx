@@ -7,7 +7,7 @@ const Projects = () => {
   return (
     <div
       id="projects"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900"
+      className="scroll-mt-24 pb-20 bg-black"
     >
       {/* Section Title */}
       <motion.h2
@@ -28,7 +28,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, x: 0 }}
               initial={{ opacity: 0, x: -100 }}
               transition={{ duration: 1 }}
-              className="bg-gray-800 p-4 rounded-lg shadow-lg h-full"
+              className="bg-gray-900 p-4 rounded-lg shadow-lg h-full border border-gray-800"
             >
               {/* Project Image */}
               <div className="flex justify-center mb-4">

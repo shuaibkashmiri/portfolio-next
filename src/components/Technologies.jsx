@@ -32,7 +32,7 @@ const iconVariants = (duration) => ({
 const Technologies = () => {
   const technologies = [
     { icon: FaNodeJs, color: "text-green-500", name: "Node.js", duration: 2.5 },
-    { icon: RiReactjsLine, color: "text-cyan-400", name: "React", duration: 3 },
+    { icon: RiReactjsLine, color: "text-purple-400", name: "React", duration: 3 },
     { icon: SiNextdotjs, color: "text-white", name: "Next.js", duration: 4 },
     {
       icon: TbBrandReactNative,
@@ -66,7 +66,7 @@ const Technologies = () => {
   return (
     <div
       id="technologies"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900"
+      className="scroll-mt-24 pb-20 bg-black"
     >
       {/* Section Title */}
       <motion.h1
@@ -94,12 +94,12 @@ const Technologies = () => {
                 variants={iconVariants(tech.duration)}
                 initial="initial"
                 animate="animate"
-                className="group relative bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition-colors duration-300"
+                className="group relative bg-gray-900 rounded-xl p-4 hover:bg-gray-800 transition-colors duration-300 border border-gray-800"
               >
                 <div className="flex flex-col items-center justify-center gap-2">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-cyan-500/20 rounded-xl transform rotate-3"></div>
-                    <div className="relative p-4 bg-gray-900 rounded-xl">
+                    <div className="absolute inset-0 bg-purple-500/20 rounded-xl transform rotate-3"></div>
+                    <div className="relative p-4 bg-black rounded-xl">
                       <Icon className={`text-4xl md:text-5xl ${tech.color}`} />
                     </div>
                   </div>

@@ -14,18 +14,18 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer id="footer" className="bg-gray-900 border-t border-gray-800">
+    <footer id="footer" className="bg-black border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Contact Info */}
           <div className="text-center md:text-left">
-            <h3 className="text-cyan-400 text-lg font-semibold mb-4">
+            <h3 className="text-purple-400 text-lg font-semibold mb-4">
               Contact Me
             </h3>
             <div className="space-y-2">
               <a
                 href="mailto:shoaibmushtaqbhat@gmail.com"
-                className="flex items-center justify-center md:justify-start text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="flex items-center justify-center md:justify-start text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 <FaEnvelope className="mr-2" />
                 bhatshoaibmushtaq@gmail.com
@@ -43,31 +43,31 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="text-center">
-            <h3 className="text-cyan-400 text-lg font-semibold mb-4">
+            <h3 className="text-purple-400 text-lg font-semibold mb-4">
               Quick Links
             </h3>
             <div className="space-y-2">
               <Link
                 href="#about"
-                className="block text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="block text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 About
               </Link>
               <Link
                 href="#services"
-                className="block text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="block text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 Services
               </Link>
               <Link
                 href="#technologies"
-                className="block text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="block text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 Technologies
               </Link>
               <Link
                 href="#contact"
-                className="block text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="block text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 Contact
               </Link>
@@ -76,7 +76,7 @@ const Footer = () => {
 
           {/* Social Links */}
           <div className="text-center md:text-right">
-            <h3 className="text-cyan-400 text-lg font-semibold mb-4">
+            <h3 className="text-purple-400 text-lg font-semibold mb-4">
               Connect With Me
             </h3>
             <div className="flex justify-center md:justify-end space-x-6">
@@ -84,7 +84,7 @@ const Footer = () => {
                 href="https://github.com/shuaibkashmiri"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 <FaGithub className="w-6 h-6" />
               </a>
@@ -92,7 +92,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/shoaib-mushtaq-bhat-9a2666190/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 <FaLinkedin className="w-6 h-6" />
               </a>
@@ -100,7 +100,7 @@ const Footer = () => {
                 href="https://www.instagram.com/shuaib_kashmiri_/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 <FaInstagram className="w-6 h-6" />
               </a>
@@ -108,7 +108,7 @@ const Footer = () => {
                 href="https://www.facebook.com/mohammadshuaib786/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
                 <FaFacebook className="w-6 h-6" />
               </a>

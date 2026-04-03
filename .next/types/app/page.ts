@@ -1,4 +1,4 @@
-// File: E:\ReactPractice\Personal Apps\react-portfolio\src\app\page.jsx
+// File: E:\Personal\port\portfolio-next\src\app\page.jsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

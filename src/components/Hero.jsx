@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { HERO_CONTENT } from "../constants";
 import profilePic from "../assets/home_profile.png";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
+import { FaPlay } from "react-icons/fa";
 
 const Hero = () => {
   useEffect(() => {
@@ -13,93 +13,102 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900 pt-16 md:pt-24"
+      className="relative min-h-screen bg-black overflow-hidden"
     >
-      {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-          {/* Text Content */}
+      {/* Content Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full items-center">
+          {/* Text Content - Left Side */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full lg:w-1/2 lg:p-8"
+            transition={{ duration: 0.8 }}
+            className="flex flex-col justify-center order-2 lg:order-1"
           >
-            <div className="flex flex-col items-center lg:items-start">
-              <h2 className="text-xl text-cyan-400 font-medium mb-2">
-                Hello, I'm
-              </h2>
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left">
-                <span className="text-white">Shoaib </span>
-                <span className="text-cyan-400">Mushtaq </span>
-                <span className="text-cyan-500">Bhat</span>
-              </h1>
-              <div className="text-xl md:text-2xl text-gray-300 h-[40px] mb-4">
-                <TypeAnimation
-                  sequence={[
-                    "Full-Stack Web Developer",
-                    2000,
-                    "React.js Expert",
-                    2000,
-                    "Next.js Developer",
-                    2000,
-                    "Mobile App Developer",
-                    2000,
-                  ]}
-                  wrapper="span"
-                  speed={50}
-                  repeat={Infinity}
-                />
-              </div>
-              <div className="space-y-4 mb-6">
-              <p className="text-gray-400 max-w-xl text-center lg:text-left">
-  I create accessible, growth-driven web and mobile experiences using React, Next.js, and Node.js, delivering full-stack solutions for businesses.
-</p>
-
-
+            <div className="space-y-6">
+              {/* Main Heading */}
+              <div className="space-y-2">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                  <span className="text-gray-500">I'm a</span>
+                </h1>
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white min-h-[80px] lg:min-h-[100px]">
+                  <TypeAnimation
+                    sequence={[
+                      "Full Stack Developer",
+                      2000,
+                      "Mobile App Developer",
+                      2000,
+                      "Desktop App Developer",
+                      2000,
+                      "DevOps Engineer",
+                      2000,
+                      "Coding Instructor",
+                      2000,
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={Infinity}
+                  />
+                </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-row items-center gap-4 w-full sm:w-auto justify-center lg:justify-start">
-                <a
-                  href="#footer"
-                  className="bg-cyan-500 text-gray-900 px-6 py-2.5 rounded-full text-base font-semibold hover:bg-cyan-600 transition duration-300"
-                >
-                  Hire Me
-                </a>
-                <a
-                  href="#services"
-                  className="border border-cyan-500 text-cyan-500 px-6 py-2.5 rounded-full text-base font-semibold hover:bg-cyan-500/10 transition duration-300"
-                >
-                  View Services
-                </a>
-              </div>
+              {/* Subtitle */}
+              <p className="text-gray-400 text-base md:text-lg max-w-md">
+                Building scalable web, mobile & desktop applications with expertise in DevOps and teaching code.
+              </p>
+
+              {/* About Me Button */}
+              <motion.a
+                href="#about"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors duration-300 w-fit group"
+              >
+                <FaPlay className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
+                <span className="font-medium">about me</span>
+              </motion.a>
             </div>
           </motion.div>
 
-          {/* Image */}
+          {/* Image - Right Side */}
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full lg:w-1/2"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex items-center justify-center order-1 lg:order-2"
           >
-            <div className="flex items-center justify-center">
-              <div className="relative w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px]">
-                <div className="absolute inset-0 rounded-full bg-cyan-500/20 animate-pulse"></div>
-                <Image
-                  src={profilePic}
-                  alt="Shoaib Mushtaq Bhat"
-                  width={300}
-                  height={300}
-                  className="rounded-full p-2 relative z-10"
-                  priority
-                />
-              </div>
+            <div className="relative w-full max-w-[400px] lg:max-w-[600px] aspect-square">
+              {/* Gradient overlay effect */}
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/50 z-10 pointer-events-none"></div>
+              
+              <Image
+                src={profilePic}
+                alt="Shoaib Mushtaq Bhat"
+                fill
+                className="object-cover grayscale"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden md:block"
+      >
+        <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"
+          />
+        </div>
+      </motion.div>
     </div>
   );
 };

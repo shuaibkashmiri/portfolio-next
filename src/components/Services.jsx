@@ -21,11 +21,11 @@ const Services = () => {
   return (
     <div
       id="services"
-      className="scroll-mt-24 border-b border-gray-800 pb-10 bg-gray-900"
+      className="scroll-mt-24 pb-20 bg-black"
     >
       {/* Section Title */}
       <h1 className="my-16 text-center text-5xl font-bold text-white">
-        Services <span className="text-cyan-400">Offered</span>
+        Services <span className="text-purple-400">Offered</span>
       </h1>
 
       {/* Content Section */}
@@ -40,11 +40,11 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   initial={{ opacity: 0, y: 50 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gray-800 rounded-lg p-6 hover:shadow-xl transition-shadow duration-300 hover:shadow-cyan-500/10 flex flex-col"
+                  className="bg-gray-900 rounded-lg p-6 hover:shadow-xl transition-shadow duration-300 hover:shadow-purple-500/10 flex flex-col border border-gray-800"
                 >
                   <div className="flex items-center mb-4">
-                    <div className="p-3 bg-cyan-500/10 rounded-lg">
-                      <IconComponent className="text-2xl text-cyan-400" />
+                    <div className="p-3 bg-purple-500/10 rounded-lg">
+                      <IconComponent className="text-2xl text-purple-400" />
                     </div>
                     <h3 className="text-lg font-semibold ml-3 text-white">
                       {service.title}
@@ -60,7 +60,7 @@ const Services = () => {
                         className="flex items-start text-gray-300"
                       >
                         <svg
-                          className="w-4 h-4 text-cyan-400 mr-2 flex-shrink-0 mt-0.5"
+                          className="w-4 h-4 text-purple-400 mr-2 flex-shrink-0 mt-0.5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
