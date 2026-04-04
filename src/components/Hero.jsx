@@ -1,14 +1,71 @@
-import React, { useEffect } from "react";
-import profilePic from "../assets/home_profile.png";
+"use client";
+
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { FaPlay } from "react-icons/fa";
 
 const Hero = () => {
+  const [settings, setSettings] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     document.title = "Shoaib Mushtaq Bhat | Full-Stack Web Developer";
+    
+    // Fetch settings from API
+    const fetchSettings = async () => {
+      try {
+        const res = await fetch("/api/settings");
+        const data = await res.json();
+        setSettings(data);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchSettings();
   }, []);
+
+  // Create animation sequence from settings
+  const getAnimationSequence = () => {
+    if (!settings?.heroAnimatedTexts || settings.heroAnimatedTexts.length === 0) {
+      // Default fallback
+      return [
+        "Full Stack Developer",
+        2000,
+        "Mobile Developer",
+        2000,
+        "DevOps Engineer",
+        2000,
+        "Coding Instructor",
+        2000,
+      ];
+    }
+    
+    // Create sequence from settings: [text1, delay, text2, delay, ...]
+    const sequence = [];
+    settings.heroAnimatedTexts.forEach(text => {
+      sequence.push(text);
+      sequence.push(2000); // 2 second delay
+    });
+    return sequence;
+  };
+
+  // Show loading or default content while fetching
+  const heroTitle = settings?.heroTitle || "Full Stack Developer";
+  const heroSubtitle = settings?.heroSubtitle || "Building scalable web, mobile & desktop applications with expertise in DevOps and teaching code.";
+  
+  // Handle profile image - use default if settings not loaded or if profileImage is empty/not a string
+  let profileImageSrc = "/home_profile.png";
+  let isExternalImage = false;
+  
+  if (settings?.profileImage && typeof settings.profileImage === 'string' && settings.profileImage.trim() !== '') {
+    profileImageSrc = settings.profileImage;
+    isExternalImage = settings.profileImage.startsWith('http://') || settings.profileImage.startsWith('https://');
+  }
 
   return (
     <div
@@ -31,29 +88,22 @@ const Hero = () => {
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                   <span className="text-gray-500">I'm a</span>
                 </h1>
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white overflow-hidden">
-                  <TypeAnimation
-                    sequence={[
-                      "Full Stack Developer",
-                      2000,
-                      "Mobile Developer",
-                      2000,
-                      "DevOps Engineer",
-                      2000,
-                      "Coding Instructor",
-                      2000,
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                    style={{ display: 'inline-block', maxWidth: '100%' }}
-                  />
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white whitespace-nowrap overflow-visible relative z-50">
+                  {!isLoading && (
+                    <TypeAnimation
+                      sequence={getAnimationSequence()}
+                      wrapper="span"
+                      speed={50}
+                      repeat={Infinity}
+                      style={{ display: 'inline-block' }}
+                    />
+                  )}
                 </div>
               </div>
 
               {/* Subtitle */}
               <p className="text-gray-400 text-base md:text-lg max-w-md relative z-30 bg-black/70 backdrop-blur-md p-3 rounded-lg lg:bg-transparent lg:backdrop-blur-none lg:p-0">
-                Building scalable web, mobile & desktop applications with expertise in DevOps and teaching code.
+                {heroSubtitle}
               </p>
 
               {/* About Me Button */}
@@ -77,14 +127,22 @@ const Hero = () => {
             className="flex items-start justify-center order-1 lg:order-2 lg:-mt-40 relative z-10"
           >
             <div className="relative w-full lg:w-[120%]">
-              <Image
-                src={profilePic}
-                alt="Shoaib Mushtaq Bhat"
-                width={1200}
-                height={1400}
-                className="w-full h-auto grayscale"
-                priority
-              />
+              {isExternalImage ? (
+                <img
+                  src={profileImageSrc}
+                  alt="Shoaib Mushtaq Bhat"
+                  className="w-full h-auto grayscale"
+                />
+              ) : (
+                <Image
+                  src={profileImageSrc}
+                  alt="Shoaib Mushtaq Bhat"
+                  width={1200}
+                  height={1400}
+                  className="w-full h-auto grayscale"
+                  priority
+                />
+              )}
             </div>
           </motion.div>
         </div>

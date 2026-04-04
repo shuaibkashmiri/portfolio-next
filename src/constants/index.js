@@ -1,8 +1,3 @@
-import project1 from "../assets/projects/project-1.png";
-import project2 from "../assets/projects/project-2.png";
-import project3 from "../assets/projects/project-3.png";
-import project4 from "../assets/projects/project-4.png";
-
 export const HERO_CONTENT = `I'm Full Stack Web Developer The crossover between design and programming has always been of interest to me, I've been lucky enough to work alongside some talented teams on a number of high profile websites. I have honed my skills in front-end technologies like React , as well as back-end technologies like Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences.`;
 
 export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
@@ -28,14 +23,14 @@ export const EXPERIENCES = [
 export const PROJECTS = [
   {
     title: "Adventure Outfits E-Commerce Website",
-    image: project1,
+    image: "/projects/project-1.png",
     description:
       "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
     technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB", "Express"],
   },
   {
     title: "Algo Academy E-Learning Platform",
-    image: project2,
+    image: "/projects/project-2.png",
     description:
       " A digital platform that is designed to facilitate educational and training experiences through electronic devices like smartphones, tablets, or computers.",
     technologies: [
@@ -50,14 +45,14 @@ export const PROJECTS = [
   },
   {
     title: " Shop Fusion E-Commerce Website",
-    image: project3,
+    image: "/projects/project-3.png",
     description:
       " An online garment shop with a wide range of clothing, accessories, and shoes for women, men, kids, and babies. ",
     technologies: ["HBS", "CSS", "Bootstrap", "Node", "Express", "MongoDB"],
   },
   {
     title: "Blogging Platform",
-    image: project4,
+    image: "/projects/project-4.png",
     description:
       "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
     technologies: ["React", "Meterial UI", "Redux", "Express", "MongoDB"],

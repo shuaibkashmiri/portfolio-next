@@ -9,7 +9,8 @@ const BackToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      // Show button after scrolling past hero section
+      if (window.pageYOffset > window.innerHeight * 0.8) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -40,10 +41,10 @@ const BackToTop = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-4 left-4 z-50 bg-purple-600 text-white p-3 rounded-full shadow-lg hover:bg-purple-700 transition-colors duration-300"
+          className="fixed bottom-4 right-4 z-50 bg-purple-600 text-white p-2.5 rounded-full shadow-lg hover:bg-purple-700 transition-colors duration-300"
           aria-label="Back to top"
         >
-          <FaArrowUp className="w-6 h-6" />
+          <FaArrowUp className="w-5 h-5" />
         </motion.button>
       )}
     </AnimatePresence>

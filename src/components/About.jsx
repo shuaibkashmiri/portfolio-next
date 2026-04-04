@@ -1,10 +1,48 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import { ABOUT_TEXT } from "../constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import aboutImage from "../assets/aboutme.png";
+import { FaDownload } from "react-icons/fa";
 
 const About = () => {
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const res = await fetch("/api/settings");
+        const data = await res.json();
+        setSettings(data);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    };
+    fetchSettings();
+  }, []);
+
+  const aboutImageSrc = settings?.aboutImage || "/aboutme.png";
+  const yearsOfExperience = settings?.yearsOfExperience || "3+";
+  const projectsCompleted = settings?.projectsCompleted || "20+";
+
+  const handleDownloadCV = () => {
+    const cvPath = settings?.cvPath && settings.cvPath.trim() !== '' ? settings.cvPath : '/cv_shoaib.pdf';
+    
+    // Check if it's an external URL
+    if (cvPath.startsWith('http://') || cvPath.startsWith('https://')) {
+      window.open(cvPath, '_blank');
+    } else {
+      // Local file - trigger download
+      const link = document.createElement('a');
+      link.href = cvPath;
+      link.download = 'Shoaib_Mushtaq_Bhat_CV.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   return (
     <div
       id="about"
@@ -47,7 +85,7 @@ const About = () => {
                 >
                   <div className="mb-1">
                     <span className="text-3xl font-bold text-purple-500">
-                      3+
+                      {yearsOfExperience}
                     </span>
                     <span className="text-white font-semibold text-sm ml-1">
                       Years of
@@ -72,7 +110,7 @@ const About = () => {
                 >
                   <div className="mb-1">
                     <span className="text-3xl font-bold text-purple-500">
-                      20+
+                      {projectsCompleted}
                     </span>
                     <span className="text-white font-semibold text-sm ml-1">
                       Projects
@@ -106,6 +144,17 @@ const About = () => {
                   </p>
                 </motion.div>
               </div>
+
+              {/* Download CV Button */}
+              <motion.button
+                onClick={handleDownloadCV}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors duration-300 w-fit group"
+              >
+                <FaDownload className="text-sm group-hover:translate-y-1 transition-transform duration-300" />
+                <span className="font-medium">Download CV</span>
+              </motion.button>
             </motion.div>
 
             {/* Image Section - Right */}
@@ -118,7 +167,7 @@ const About = () => {
             >
               <div className="relative w-full">
                 <Image
-                  src={aboutImage}
+                  src={aboutImageSrc}
                   alt="About Me"
                   width={800}
                   height={600}

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logodf.png";
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -9,6 +8,7 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [settings, setSettings] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,8 +18,33 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const res = await fetch("/api/settings");
+        const data = await res.json();
+        setSettings(data);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    };
+    fetchSettings();
+  }, []);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleNavClick = (e, href, text) => {
+    if (text === "Contact") {
+      e.preventDefault();
+      // Trigger contact modal
+      const openEvent = new CustomEvent('openContactModal');
+      window.dispatchEvent(openEvent);
+      setIsOpen(false);
+    } else {
+      setIsOpen(false);
+    }
   };
 
   const navLinks = [
@@ -30,6 +55,9 @@ const Navbar = () => {
     { href: "#blogs", text: "Blogs" },
     { href: "#contact", text: "Contact" },
   ];
+
+  const logoSrc = settings?.logo || "/logodf.png";
+  const isExternalLogo = logoSrc.startsWith('http://') || logoSrc.startsWith('https://');
 
   return (
     <nav
@@ -43,13 +71,22 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Image
-              src={logo}
-              alt="Logo"
-              width={50}
-              height={50}
-              className="w-12 h-12"
-            />
+            {isExternalLogo ? (
+              <img
+                src={logoSrc}
+                alt="Logo"
+                className="h-12 w-auto object-contain"
+              />
+            ) : (
+              <Image
+                src={logoSrc}
+                alt="Logo"
+                width={120}
+                height={48}
+                className="h-12 w-auto object-contain"
+                priority
+              />
+            )}
           </div>
 
           {/* Hamburger Menu Button */}
@@ -80,7 +117,7 @@ const Navbar = () => {
               <motion.a
                 key={link.href}
                 href={link.href}
-                onClick={toggleMenu}
+                onClick={(e) => handleNavClick(e, link.href, link.text)}
                 initial={{ opacity: 0, x: -20 }}
                 animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
