@@ -16,7 +16,7 @@ const Hero = () => {
       className="relative h-screen bg-black overflow-hidden pt-20"
     >
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8 sm:px-12 lg:px-20 h-[calc(100vh-5rem)] flex items-center pb-32 lg:pb-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-2 sm:px-8 lg:px-20 h-[calc(100vh-5rem)] flex items-center pb-32 lg:pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-4 lg:gap-8 w-full items-center">
           {/* Text Content - Left Side */}
           <motion.div
@@ -28,10 +28,10 @@ const Hero = () => {
             <div className="space-y-6">
               {/* Main Heading */}
               <div className="space-y-2">
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                   <span className="text-gray-500">I'm a</span>
                 </h1>
-                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white whitespace-nowrap">
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white overflow-hidden">
                   <TypeAnimation
                     sequence={[
                       "Full Stack Developer",
@@ -46,6 +46,7 @@ const Hero = () => {
                     wrapper="span"
                     speed={50}
                     repeat={Infinity}
+                    style={{ display: 'inline-block', maxWidth: '100%' }}
                   />
                 </div>
               </div>
@@ -63,7 +64,7 @@ const Hero = () => {
                 className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors duration-300 w-fit group relative z-30"
               >
                 <FaPlay className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
-                <span className="font-medium">about me</span>
+                <span className="font-medium">About Me</span>
               </motion.a>
             </div>
           </motion.div>

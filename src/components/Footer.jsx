@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 const Footer = () => {
   return (
     <footer id="footer" className="bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         {/* Footer Card */}
         <div className="bg-black rounded-3xl p-8 md:p-12 mb-2">
           <div className="mb-8">

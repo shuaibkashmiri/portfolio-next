@@ -12,3 +12,33 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
 }
+
+/* Swiper Pagination Styles */
+.services-swiper .swiper-pagination-bullet,
+.projects-swiper .swiper-pagination-bullet,
+.blogs-swiper .swiper-pagination-bullet {
+  background: rgba(124, 58, 237, 0.3);
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+}
+
+.services-swiper .swiper-pagination-bullet-active,
+.projects-swiper .swiper-pagination-bullet-active,
+.blogs-swiper .swiper-pagination-bullet-active {
+  background: #7c3aed;
+  width: 24px;
+  border-radius: 4px;
+}
+
+.services-swiper,
+.projects-swiper,
+.blogs-swiper {
+  padding-bottom: 40px;
+}
+
+.services-swiper .swiper-pagination,
+.projects-swiper .swiper-pagination,
+.blogs-swiper .swiper-pagination {
+  bottom: 0;
+}

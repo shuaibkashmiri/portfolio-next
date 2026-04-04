@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 const Experience = () => {
   return (
     <div className="bg-black" id="experience">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         {/* Experience Card */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

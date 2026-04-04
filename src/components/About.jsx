@@ -10,7 +10,7 @@ const About = () => {
       id="about"
       className="scroll-mt-24 bg-black w-full overflow-x-hidden relative lg:-mt-0"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         {/* About Card */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
