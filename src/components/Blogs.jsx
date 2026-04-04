@@ -98,7 +98,7 @@ const Blogs = () => {
           className="bg-black rounded-3xl p-8 md:p-12 mb-2"
         >
           <div className="mb-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center lg:text-left">
               Latest Blogs
             </h2>
             <p className="text-gray-400 text-base md:text-lg">

@@ -72,29 +72,29 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="relative h-screen bg-black overflow-hidden pt-20"
+      className="relative h-screen bg-black overflow-hidden pt-16 lg:pt-20"
     >
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-2 sm:px-8 lg:px-20 h-[calc(100vh-5rem)] flex items-center pb-32 lg:pb-0">
-        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-4 lg:gap-8 w-full items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-2 sm:px-8 lg:px-20 h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] flex items-center pb-0 lg:pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-2 lg:gap-8 w-full items-center -mt-8 lg:mt-0">
           {/* Text Content - Left Side */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-center order-2 lg:order-1 relative z-30"
+            className="flex flex-col justify-center order-2 lg:order-1 relative z-30 px-4 lg:px-0"
           >
-            <div className="space-y-6">
+            <div className="space-y-4 lg:space-y-6">
               {/* Main Heading */}
-              <div className="space-y-2">
+              <div className="space-y-1 lg:space-y-2">
                 {/* Prefix and Name in one line */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
+                <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
                   <span className="text-gray-500">{heroPrefixText} </span>
                   <span className="text-purple-500">{heroName}</span>
                 </h1>
                 
                 {/* Animated Text on next line */}
-                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white whitespace-nowrap overflow-visible relative z-50">
+                <div className="text-3xl sm:text-3xl md:text-4xl lg:text-7xl font-bold text-white whitespace-nowrap overflow-visible relative z-50">
                   {!isLoading && (
                     <TypeAnimation
                       sequence={getAnimationSequence()}
@@ -108,7 +108,7 @@ const Hero = () => {
               </div>
 
               {/* Subtitle */}
-              <p className="text-gray-400 text-base md:text-lg max-w-md relative z-30 bg-black/70 backdrop-blur-md p-3 rounded-lg lg:bg-transparent lg:backdrop-blur-none lg:p-0">
+              <p className="text-gray-400 text-sm md:text-base lg:text-lg max-w-md relative z-30 bg-black/70 backdrop-blur-md p-2 rounded-lg lg:bg-transparent lg:backdrop-blur-none hidden lg:block">
                 {heroSubtitle}
               </p>
 
@@ -117,9 +117,9 @@ const Hero = () => {
                 href="#about"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors duration-300 w-fit group relative z-30"
+                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white px-5 py-2.5 lg:px-6 lg:py-3 rounded-md transition-colors duration-300 w-fit group relative z-30 text-sm lg:text-base"
               >
-                <FaPlay className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
+                <FaPlay className="text-xs lg:text-sm group-hover:translate-x-1 transition-transform duration-300" />
                 <span className="font-medium">About Me</span>
               </motion.a>
             </div>
@@ -130,7 +130,7 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-start justify-center order-1 lg:order-2 lg:-mt-40 relative z-10"
+            className="flex items-start justify-center order-1 lg:order-2 lg:-mt-40 relative z-10 -mt-20"
           >
             <div className="relative w-full lg:w-[120%]">
               {isExternalImage ? (

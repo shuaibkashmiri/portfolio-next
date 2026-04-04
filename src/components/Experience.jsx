@@ -24,10 +24,10 @@ const Experience = () => {
 
   if (loading) {
     return (
-      <div className="bg-black" id="experience">
+      <div className="bg-black -mt-32 lg:mt-0 relative z-20" id="experience">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div className="bg-black rounded-3xl p-8 md:p-12 mb-2">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">Experience</h2>
+          <div className="bg-black rounded-3xl p-6 md:p-12 mb-2">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 lg:mb-12 text-center lg:text-left">Experience</h2>
             <div className="text-center text-gray-400">Loading...</div>
           </div>
         </div>
@@ -36,20 +36,20 @@ const Experience = () => {
   }
 
   return (
-    <div className="bg-black" id="experience">
+    <div className="bg-black -mt-32 lg:mt-0 relative z-20" id="experience">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         {/* Experience Card */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-black rounded-3xl p-8 md:p-12 mb-2"
+          className="bg-black rounded-3xl p-6 md:p-12 mb-2"
         >
           <motion.h2
             whileInView={{ opacity: 1, y: 0 }}
             initial={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-12"
+            className="text-3xl md:text-5xl font-bold text-white mb-8 lg:mb-12 text-center lg:text-left"
           >
             Experience
           </motion.h2>

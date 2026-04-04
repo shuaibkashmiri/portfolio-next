@@ -88,7 +88,7 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="bg-black rounded-3xl p-8 md:p-12 mb-2"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center lg:text-left">
             Services
           </h2>
 
