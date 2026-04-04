@@ -3,11 +3,21 @@ import connectDB from '@/lib/mongodb';
 import Technology from '@/models/Technology';
 import { getServerSession } from 'next-auth';
 
+// Disable caching for this route
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   try {
     await connectDB();
     const technologies = await Technology.find().sort({ order: 1 });
-    return NextResponse.json(technologies);
+    return NextResponse.json(technologies, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
+    });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

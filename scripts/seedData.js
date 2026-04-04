@@ -64,10 +64,16 @@ const TechnologySchema = new mongoose.Schema({
 
 const SiteSettingsSchema = new mongoose.Schema({
   aboutText: String,
+  fullName: String,
+  heroName: String,
   heroTitle: String,
+  heroPrefixText: String,
   heroSubtitle: String,
+  heroAnimatedTexts: [String],
   profileImage: String,
   aboutImage: String,
+  logo: String,
+  cvPath: String,
   contactEmail: String,
   contactPhone: String,
   location: String,
@@ -260,14 +266,17 @@ const technologies = [
 ];
 
 const siteSettings = {
-  aboutText: "I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.",
+  aboutText: "I am Shoaib Mushtaq Bhat, a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.",
+  fullName: "Shoaib Mushtaq Bhat",
+  heroName: "Shoaib",
   heroTitle: "Full Stack Developer",
+  heroPrefixText: "I'm",
   heroSubtitle: "Building scalable web, mobile & desktop applications with expertise in DevOps and teaching code.",
   heroAnimatedTexts: [
-    "Full Stack Developer",
-    "Mobile Developer",
-    "DevOps Engineer",
-    "Coding Instructor"
+    "A FullStack Developer",
+    "A Mobile Developer",
+    "A DevOps Engineer",
+    "A Coding Instructor"
   ],
   profileImage: "/home_profile.png",
   aboutImage: "/aboutme.png",
@@ -304,7 +313,7 @@ async function seedDatabase() {
     await User.create({
       email: 'admin@shoaibcodes.online',
       password: hashedPassword,
-      name: 'Shoaib Codes Admin',
+      name: 'Admin Shoaib Codes',
       role: 'admin',
     });
     console.log('Created admin user');

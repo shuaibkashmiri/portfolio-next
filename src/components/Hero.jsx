@@ -56,6 +56,8 @@ const Hero = () => {
 
   // Show loading or default content while fetching
   const heroTitle = settings?.heroTitle || "Full Stack Developer";
+  const heroPrefixText = settings?.heroPrefixText || "I'm";
+  const heroName = settings?.heroName || "Shoaib";
   const heroSubtitle = settings?.heroSubtitle || "Building scalable web, mobile & desktop applications with expertise in DevOps and teaching code.";
   
   // Handle profile image - use default if settings not loaded or if profileImage is empty/not a string
@@ -85,9 +87,13 @@ const Hero = () => {
             <div className="space-y-6">
               {/* Main Heading */}
               <div className="space-y-2">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                  <span className="text-gray-500">I'm a</span>
+                {/* Prefix and Name in one line */}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
+                  <span className="text-gray-500">{heroPrefixText} </span>
+                  <span className="text-purple-500">{heroName}</span>
                 </h1>
+                
+                {/* Animated Text on next line */}
                 <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white whitespace-nowrap overflow-visible relative z-50">
                   {!isLoading && (
                     <TypeAnimation

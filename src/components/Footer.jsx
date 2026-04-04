@@ -14,6 +14,20 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const Footer = () => {
+  const handleSmoothScroll = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    // Dispatch custom event to open contact modal
+    window.dispatchEvent(new CustomEvent("openContactModal"));
+  };
+
   return (
     <footer id="footer" className="bg-black">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -59,30 +73,34 @@ const Footer = () => {
                 Quick Links
               </h3>
               <div className="space-y-2">
-                <Link
+                <a
                   href="#about"
-                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
+                  onClick={(e) => handleSmoothScroll(e, "about")}
+                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm cursor-pointer"
                 >
                   About
-                </Link>
-                <Link
+                </a>
+                <a
                   href="#services"
-                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
+                  onClick={(e) => handleSmoothScroll(e, "services")}
+                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm cursor-pointer"
                 >
                   Services
-                </Link>
-                <Link
+                </a>
+                <a
                   href="#technologies"
-                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
+                  onClick={(e) => handleSmoothScroll(e, "technologies")}
+                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm cursor-pointer"
                 >
                   Technologies
-                </Link>
-                <Link
+                </a>
+                <a
                   href="#contact"
-                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
+                  onClick={handleContactClick}
+                  className="block text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm cursor-pointer"
                 >
                   Contact
-                </Link>
+                </a>
               </div>
             </div>
 

@@ -1,7 +1,40 @@
-import { EXPERIENCES } from "../constants"
-import { motion } from "framer-motion"
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Experience = () => {
+  const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const res = await fetch("/api/experiences", { cache: 'no-store' });
+        const data = await res.json();
+        setExperiences(data);
+      } catch (error) {
+        console.error("Error fetching experiences:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchExperiences();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="bg-black" id="experience">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="bg-black rounded-3xl p-8 md:p-12 mb-2">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">Experience</h2>
+            <div className="text-center text-gray-400">Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-black" id="experience">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -22,9 +55,9 @@ const Experience = () => {
           </motion.h2>
 
           <div className="space-y-6">
-            {EXPERIENCES.map((experience, index) => (
+            {experiences.map((experience, index) => (
               <motion.div
-                key={index}
+                key={experience._id}
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -32,7 +65,7 @@ const Experience = () => {
                 className="group relative"
               >
                 {/* Timeline Line */}
-                {index !== EXPERIENCES.length - 1 && (
+                {index !== experiences.length - 1 && (
                   <div className="absolute left-6 top-12 bottom-0 w-px bg-gradient-to-b from-purple-500/50 to-transparent hidden md:block" />
                 )}
                 
@@ -85,7 +118,7 @@ const Experience = () => {
         </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Experience
+export default Experience;

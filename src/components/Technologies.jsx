@@ -84,7 +84,7 @@ const Technologies = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-5 gap-3 md:gap-4 justify-items-center"
+          className="grid grid-cols-4 sm:grid-cols-5 gap-3 md:gap-4 justify-items-center"
         >
           {technologies.map((tech, index) => {
             const Icon = tech.icon;
@@ -95,13 +95,13 @@ const Technologies = () => {
                 initial="initial"
                 animate="animate"
                 whileHover={{ scale: 1.1 }}
-                className="group relative bg-white/5 backdrop-blur-sm rounded-xl p-3 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-purple-500/30 w-full max-w-[110px]"
+                className="group relative bg-white/5 backdrop-blur-sm rounded-xl p-4 sm:p-3 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-purple-500/30 w-full max-w-[110px]"
               >
                 <div className="flex flex-col items-center justify-center gap-2">
                   <div className="relative">
                     <div className="absolute inset-0 bg-purple-500/20 rounded-lg blur-lg group-hover:blur-xl transition-all duration-300"></div>
-                    <div className="relative p-2 bg-black/50 rounded-lg">
-                      <Icon className={`text-3xl ${tech.color} group-hover:scale-110 transition-transform duration-300`} />
+                    <div className="relative p-2.5 sm:p-2 bg-black/50 rounded-lg">
+                      <Icon className={`text-4xl sm:text-3xl ${tech.color} group-hover:scale-110 transition-transform duration-300`} />
                     </div>
                   </div>
                   <span className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors duration-300 text-center">

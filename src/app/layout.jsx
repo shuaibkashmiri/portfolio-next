@@ -1,12 +1,8 @@
 import React from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import BackToTop from "../components/BackToTop";
-import WhatsAppButton from "../components/WhatsAppButton";
-import FloatingButtons from "../components/FloatingButtons";
 import SessionProvider from "../components/SessionProvider";
+import LayoutWrapper from "../components/LayoutWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -66,12 +62,7 @@ export default function RootLayout({ children }) {
         className={`${inter.className} overflow-x-hidden w-screen text-gray-300 antialiased selection:bg-purple-400 selection:text-gray-900 bg-black min-h-screen flex flex-col`}
       >
         <SessionProvider>
-          <Navbar />
-          <main className="flex-grow w-full overflow-x-hidden">{children}</main>
-          <Footer />
-          <BackToTop />
-          <WhatsAppButton />
-          <FloatingButtons />
+          <LayoutWrapper>{children}</LayoutWrapper>
         </SessionProvider>
       </body>
     </html>

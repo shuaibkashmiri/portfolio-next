@@ -5,9 +5,21 @@ const SiteSettingsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  fullName: {
+    type: String,
+    default: "Shoaib Mushtaq Bhat",
+  },
+  heroName: {
+    type: String,
+    default: "Shoaib",
+  },
   heroTitle: {
     type: String,
     required: true,
+  },
+  heroPrefixText: {
+    type: String,
+    default: "I'm",
   },
   heroSubtitle: {
     type: String,

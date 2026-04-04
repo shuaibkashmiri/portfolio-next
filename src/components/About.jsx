@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ABOUT_TEXT } from "../constants";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaDownload } from "react-icons/fa";
@@ -25,6 +24,29 @@ const About = () => {
   const aboutImageSrc = settings?.aboutImage || "/aboutme.png";
   const yearsOfExperience = settings?.yearsOfExperience || "3+";
   const projectsCompleted = settings?.projectsCompleted || "20+";
+  const aboutText = settings?.aboutText || "I am a dedicated and versatile full stack developer...";
+  const fullName = settings?.fullName || "Shoaib Mushtaq Bhat";
+
+  // Function to highlight name in about text
+  const renderAboutText = () => {
+    if (!aboutText || !fullName) return aboutText;
+    
+    const parts = aboutText.split(fullName);
+    if (parts.length === 1) return aboutText; // Name not found in text
+    
+    return (
+      <>
+        {parts.map((part, index) => (
+          <span key={index}>
+            {part}
+            {index < parts.length - 1 && (
+              <span className="text-purple-500 font-semibold">{fullName}</span>
+            )}
+          </span>
+        ))}
+      </>
+    );
+  };
 
   const handleDownloadCV = () => {
     const cvPath = settings?.cvPath && settings.cvPath.trim() !== '' ? settings.cvPath : '/cv_shoaib.pdf';
@@ -69,7 +91,7 @@ const About = () => {
                 About Me
               </h2>
               <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-                {ABOUT_TEXT}
+                {renderAboutText()}
               </p>
 
               {/* Stats Cards */}
