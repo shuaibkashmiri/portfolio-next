@@ -144,3 +144,33 @@ export const SERVICES = [
     ],
   },
 ];
+
+export const BLOGS = [
+  {
+    title: "Building Scalable Web Applications with Next.js",
+    excerpt: "Learn how to create high-performance web applications using Next.js and modern React patterns.",
+    date: "March 15, 2024",
+    readTime: "5 min read",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
+    url: "/blog/building-scalable-web-applications-nextjs", // Internal link
+  },
+  {
+    title: "Mastering React Hooks: A Complete Guide",
+    excerpt: "Deep dive into React Hooks and learn how to write cleaner, more efficient React components.",
+    date: "March 10, 2024",
+    readTime: "8 min read",
+    category: "React",
+    image: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800&q=80",
+    url: "/blog/mastering-react-hooks-guide", // Internal link
+  },
+  {
+    title: "DevOps Best Practices for Modern Applications",
+    excerpt: "Explore essential DevOps practices to streamline your development and deployment workflows.",
+    date: "March 5, 2024",
+    readTime: "6 min read",
+    category: "DevOps",
+    image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80",
+    url: "https://example.com/blog/devops-best-practices", // External link
+  },
+];

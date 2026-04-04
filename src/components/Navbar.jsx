@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../assets/logodf.png";
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +27,7 @@ const Navbar = () => {
     { href: "#about", text: "About" },
     { href: "#technologies", text: "Technologies" },
     { href: "#services", text: "Services" },
+    { href: "#blogs", text: "Blogs" },
     { href: "#contact", text: "Contact" },
   ];
 
@@ -37,70 +39,57 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full overflow-x-hidden">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20 w-full overflow-x-hidden">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Image
               src={logo}
               alt="Logo"
-              width={144}
-              height={144}
-              className="w-32 md:w-36"
+              width={50}
+              height={50}
+              className="w-12 h-12"
             />
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-300 hover:text-purple-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
-                >
-                  {link.text}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-400 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-gray-300 hover:text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              {isOpen ? (
-                <HiX className="h-6 w-6" />
-              ) : (
-                <HiMenu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="text-black hover:text-black-500 p-3 rounded-full bg-white hover:bg-white/90 focus:outline-none transition-all duration-300"
+          >
+            {isOpen ? (
+              <HiX className="h-6 w-6" />
+            ) : (
+              <HiMenu className="h-6 w-6" />
+            )}
+          </button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden transition-all duration-300 ease-in-out ${
+        className={`transition-all duration-500 ease-in-out ${
           isOpen
-            ? "max-h-64 opacity-100 bg-gray-900/95 backdrop-blur-sm"
+            ? "max-h-screen opacity-100"
             : "max-h-0 opacity-0"
         } overflow-hidden`}
       >
-        <div className="px-4 pt-2 pb-3 space-y-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={toggleMenu}
-              className="text-gray-300 hover:text-purple-400 hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
-            >
-              {link.text}
-            </a>
-          ))}
+        <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20 flex justify-end">
+          <div className="py-6 space-y-2 bg-white/10 backdrop-blur-xl rounded-2xl mt-4 border border-white/20 w-auto min-w-[250px]">
+            {navLinks.map((link, index) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                onClick={toggleMenu}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="text-white hover:text-purple-400 hover:bg-white/10 block px-6 py-3 rounded-xl text-lg font-medium transition-all duration-300 mx-3"
+              >
+                {link.text}
+              </motion.a>
+            ))}
+          </div>
         </div>
       </div>
     </nav>

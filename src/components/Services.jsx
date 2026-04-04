@@ -21,16 +21,20 @@ const Services = () => {
   return (
     <div
       id="services"
-      className="scroll-mt-24 pb-20 bg-black"
+      className="scroll-mt-24 bg-black"
     >
-      {/* Section Title */}
-      <h1 className="my-16 text-center text-5xl font-bold text-white">
-        Services <span className="text-purple-400">Offered</span>
-      </h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Services Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="bg-black rounded-3xl p-8 md:p-12 mb-2"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
+            Services
+          </h2>
 
-      {/* Content Section */}
-      <div className="flex flex-wrap items-center">
-        <div className="w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((service, index) => {
               const IconComponent = iconComponents[service.icon];
@@ -38,40 +42,45 @@ const Services = () => {
                 <motion.div
                   key={index}
                   whileInView={{ opacity: 1, y: 0 }}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 30 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gray-900 rounded-lg p-6 hover:shadow-xl transition-shadow duration-300 hover:shadow-purple-500/10 flex flex-col border border-gray-800"
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                  className="group bg-white/5 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-all duration-300 flex flex-col border border-white/10 hover:border-purple-500/30"
                 >
-                  <div className="flex items-center mb-4">
-                    <div className="p-3 bg-purple-500/10 rounded-lg">
+                  <div className="mb-3">
+                    <div className="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-purple-500/30">
                       <IconComponent className="text-2xl text-purple-400" />
                     </div>
-                    <h3 className="text-lg font-semibold ml-3 text-white">
-                      {service.title}
-                    </h3>
                   </div>
 
-                  <p className="text-gray-400 mb-4">{service.description}</p>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                    {service.title}
+                  </h3>
 
-                  <div className="space-y-2 mt-auto">
+                  <p className="text-gray-400 mb-3 text-xs leading-relaxed">{service.description}</p>
+
+                  <div className="space-y-1.5 mt-auto">
                     {service.features.map((feature, featureIndex) => (
                       <div
                         key={featureIndex}
-                        className="flex items-start text-gray-300"
+                        className="flex items-start text-gray-300 text-xs"
                       >
-                        <svg
-                          className="w-4 h-4 text-purple-400 mr-2 flex-shrink-0 mt-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
+                        <div className="w-4 h-4 rounded-full bg-purple-600/20 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 border border-purple-500/30">
+                          <svg
+                            className="w-2.5 h-2.5 text-purple-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -80,7 +89,7 @@ const Services = () => {
               );
             })}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

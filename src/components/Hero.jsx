@@ -13,17 +13,17 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="relative min-h-screen bg-black overflow-hidden"
+      className="relative h-screen bg-black overflow-hidden pt-20"
     >
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-8 sm:px-12 lg:px-20 h-[calc(100vh-5rem)] flex items-center pb-32 lg:pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-4 lg:gap-8 w-full items-center">
           {/* Text Content - Left Side */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-center order-2 lg:order-1"
+            className="flex flex-col justify-center order-2 lg:order-1 relative z-30"
           >
             <div className="space-y-6">
               {/* Main Heading */}
@@ -31,14 +31,12 @@ const Hero = () => {
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                   <span className="text-gray-500">I'm a</span>
                 </h1>
-                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white min-h-[80px] lg:min-h-[100px]">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white whitespace-nowrap">
                   <TypeAnimation
                     sequence={[
                       "Full Stack Developer",
                       2000,
-                      "Mobile App Developer",
-                      2000,
-                      "Desktop App Developer",
+                      "Mobile Developer",
                       2000,
                       "DevOps Engineer",
                       2000,
@@ -53,7 +51,7 @@ const Hero = () => {
               </div>
 
               {/* Subtitle */}
-              <p className="text-gray-400 text-base md:text-lg max-w-md">
+              <p className="text-gray-400 text-base md:text-lg max-w-md relative z-30 bg-black/70 backdrop-blur-md p-3 rounded-lg lg:bg-transparent lg:backdrop-blur-none lg:p-0">
                 Building scalable web, mobile & desktop applications with expertise in DevOps and teaching code.
               </p>
 
@@ -62,7 +60,7 @@ const Hero = () => {
                 href="#about"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors duration-300 w-fit group"
+                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-md transition-colors duration-300 w-fit group relative z-30"
               >
                 <FaPlay className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
                 <span className="font-medium">about me</span>
@@ -75,19 +73,16 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center justify-center order-1 lg:order-2"
+            className="flex items-start justify-center order-1 lg:order-2 lg:-mt-40 relative z-10"
           >
-            <div className="relative w-full max-w-[400px] lg:max-w-[600px] aspect-square">
-              {/* Gradient overlay effect */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/50 z-10 pointer-events-none"></div>
-              
+            <div className="relative w-full lg:w-[120%]">
               <Image
                 src={profilePic}
                 alt="Shoaib Mushtaq Bhat"
-                fill
-                className="object-cover grayscale"
+                width={1200}
+                height={1400}
+                className="w-full h-auto grayscale"
                 priority
-                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </motion.div>
@@ -105,7 +100,7 @@ const Hero = () => {
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"
+            className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2"
           />
         </div>
       </motion.div>

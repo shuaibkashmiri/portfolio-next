@@ -66,20 +66,20 @@ const Technologies = () => {
   return (
     <div
       id="technologies"
-      className="scroll-mt-24 pb-20 bg-black"
+      className="scroll-mt-24 bg-black"
     >
       {/* Section Title */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="my-16 text-center text-4xl md:text-5xl font-bold text-white"
+        className="mb-8 text-center text-4xl md:text-5xl font-bold text-white"
       >
         Technologies
       </motion.h1>
 
       {/* Technologies Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,16 +94,17 @@ const Technologies = () => {
                 variants={iconVariants(tech.duration)}
                 initial="initial"
                 animate="animate"
-                className="group relative bg-gray-900 rounded-xl p-4 hover:bg-gray-800 transition-colors duration-300 border border-gray-800"
+                whileHover={{ scale: 1.1 }}
+                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-purple-500/30"
               >
-                <div className="flex flex-col items-center justify-center gap-2">
+                <div className="flex flex-col items-center justify-center gap-3">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-purple-500/20 rounded-xl transform rotate-3"></div>
-                    <div className="relative p-4 bg-black rounded-xl">
-                      <Icon className={`text-4xl md:text-5xl ${tech.color}`} />
+                    <div className="absolute inset-0 bg-purple-500/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <div className="relative p-4 bg-black/50 rounded-xl">
+                      <Icon className={`text-4xl md:text-5xl ${tech.color} group-hover:scale-110 transition-transform duration-300`} />
                     </div>
                   </div>
-                  <span className="text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
+                  <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
                     {tech.name}
                   </span>
                 </div>
