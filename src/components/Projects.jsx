@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { PROJECTS } from "../constants";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -53,6 +52,37 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const Projects = () => {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch("/api/projects", { cache: 'no-store' });
+        const data = await res.json();
+        setProjects(data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <div id="projects" className="scroll-mt-24 bg-black">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="bg-black rounded-3xl p-8 md:p-12 mb-2">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center lg:text-left">Projects</h2>
+            <div className="text-center text-gray-400">Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       id="projects"
@@ -92,8 +122,8 @@ const Projects = () => {
               }}
               className="projects-swiper"
             >
-              {PROJECTS.map((project, index) => (
-                <SwiperSlide key={index}>
+              {projects.map((project, index) => (
+                <SwiperSlide key={project._id}>
                   <ProjectCard project={project} index={index} />
                 </SwiperSlide>
               ))}
@@ -102,8 +132,8 @@ const Projects = () => {
 
           {/* Desktop Grid */}
           <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((project, index) => (
-              <ProjectCard key={index} project={project} index={index} />
+            {projects.map((project, index) => (
+              <ProjectCard key={project._id} project={project} index={index} />
             ))}
           </div>
         </motion.div>

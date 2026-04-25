@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { SERVICES } from "../constants";
 import {
   FaStore,
   FaHospital,
@@ -75,6 +74,37 @@ const ServiceCard = ({ service, index }) => {
 };
 
 const Services = () => {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const res = await fetch("/api/services", { cache: 'no-store' });
+        const data = await res.json();
+        setServices(data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchServices();
+  }, []);
+
+  if (loading) {
+    return (
+      <div id="services" className="scroll-mt-24 bg-black">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="bg-black rounded-3xl p-8 md:p-12 mb-2">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center lg:text-left">Services</h2>
+            <div className="text-center text-gray-400">Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       id="services"
@@ -109,8 +139,8 @@ const Services = () => {
               }}
               className="services-swiper"
             >
-              {SERVICES.map((service, index) => (
-                <SwiperSlide key={index}>
+              {services.map((service, index) => (
+                <SwiperSlide key={service._id}>
                   <ServiceCard service={service} index={index} />
                 </SwiperSlide>
               ))}
@@ -119,8 +149,8 @@ const Services = () => {
 
           {/* Desktop Grid */}
           <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service, index) => (
-              <ServiceCard key={index} service={service} index={index} />
+            {services.map((service, index) => (
+              <ServiceCard key={service._id} service={service} index={index} />
             ))}
           </div>
         </motion.div>

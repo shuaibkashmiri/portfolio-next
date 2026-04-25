@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { BLOGS } from "../constants";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaClock, FaCalendar, FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
@@ -84,6 +83,37 @@ const BlogCard = ({ blog, index }) => {
 };
 
 const Blogs = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("/api/blogs", { cache: 'no-store' });
+        const data = await res.json();
+        setBlogs(data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
+  if (loading) {
+    return (
+      <div id="blogs" className="scroll-mt-24 bg-black">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="bg-black rounded-3xl p-8 md:p-12 mb-2">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center lg:text-left">Latest Blogs</h2>
+            <div className="text-center text-gray-400">Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       id="blogs"
@@ -123,8 +153,8 @@ const Blogs = () => {
               }}
               className="blogs-swiper"
             >
-              {BLOGS.map((blog, index) => (
-                <SwiperSlide key={index}>
+              {blogs.map((blog, index) => (
+                <SwiperSlide key={blog._id}>
                   <BlogCard blog={blog} index={index} />
                 </SwiperSlide>
               ))}
@@ -133,8 +163,8 @@ const Blogs = () => {
 
           {/* Desktop Grid */}
           <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6">
-            {BLOGS.map((blog, index) => (
-              <BlogCard key={index} blog={blog} index={index} />
+            {blogs.map((blog, index) => (
+              <BlogCard key={blog._id} blog={blog} index={index} />
             ))}
           </div>
         </motion.div>
