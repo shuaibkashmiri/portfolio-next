@@ -9,6 +9,27 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
 
+// Add scrollbar styling
+const scrollbarStyles = `
+  .project-description::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .project-description::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+  
+  .project-description::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.6);
+    border-radius: 10px;
+  }
+  
+  .project-description::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.8);
+  }
+`;
+
 const ProjectCard = ({ project, index }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -91,7 +112,7 @@ const ProjectCard = ({ project, index }) => {
           }}
           className="absolute w-full h-full bg-gradient-to-br from-purple-600/20 to-purple-900/20 backdrop-blur-sm rounded-xl overflow-hidden border border-purple-500/30 flex flex-col p-4 justify-between"
         >
-          <div className="overflow-y-auto">
+          <div className="overflow-y-auto project-description">
             <h3 className="text-lg font-bold text-white mb-3">
               {project.title}
             </h3>
@@ -128,6 +149,17 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const [displayCount, setDisplayCount] = useState(6); // Show 2 rows (3 cols on desktop, 2 cols on tablet)
   const projectsPerBatch = 6;
+
+  useEffect(() => {
+    // Inject scrollbar styles
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = scrollbarStyles;
+    document.head.appendChild(styleSheet);
+
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchProjects = async () => {
