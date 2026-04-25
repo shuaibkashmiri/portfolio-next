@@ -12,6 +12,7 @@ export default function ProjectManager() {
     title: "",
     description: "",
     image: "",
+    websiteUrl: "",
     technologies: "",
     order: 0,
   });
@@ -69,6 +70,7 @@ export default function ProjectManager() {
       title: project.title,
       description: project.description,
       image: project.image,
+      websiteUrl: project.websiteUrl || "",
       technologies: project.technologies.join(", "),
       order: project.order,
     });
@@ -98,7 +100,7 @@ export default function ProjectManager() {
 
   const resetForm = () => {
     setEditingId(null);
-    setFormData({ title: "", description: "", image: "", technologies: "", order: 0 });
+    setFormData({ title: "", description: "", image: "", websiteUrl: "", technologies: "", order: 0 });
   };
 
   if (loading) return <div className="text-white">Loading...</div>;
@@ -144,6 +146,18 @@ export default function ProjectManager() {
             />
             <p className="text-gray-400 text-xs mt-2">
               Use local path (e.g., /projects/project-1.png) or external URL (e.g., https://images.unsplash.com/...)
+            </p>
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Website URL (optional, e.g., https://example.com)"
+              value={formData.websiteUrl}
+              onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+              className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
+            />
+            <p className="text-gray-400 text-xs mt-2">
+              Leave empty if no website URL available. Card will be clickable only if URL is provided.
             </p>
           </div>
           <input

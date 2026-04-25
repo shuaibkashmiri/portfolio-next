@@ -9,6 +9,14 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  content: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
   date: {
     type: String,
     required: true,
@@ -25,9 +33,10 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  url: {
+  slug: {
     type: String,
     required: true,
+    unique: true,
   },
   order: {
     type: Number,

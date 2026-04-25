@@ -33,7 +33,7 @@ export default function ContactModal({ isOpen, onClose }) {
     }
   }, [isOpen]);
 
-  // Auto-open modal on first visit after 5 seconds
+  // Auto-open modal on first visit after 10 seconds
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisitedBefore');
     
@@ -46,7 +46,7 @@ export default function ContactModal({ isOpen, onClose }) {
           window.dispatchEvent(openEvent);
         }, 100);
         localStorage.setItem('hasVisitedBefore', 'true');
-      }, 5000);
+      }, 10000);
       
       return () => clearTimeout(timer);
     }

@@ -31,6 +31,7 @@ const ProjectSchema = new mongoose.Schema({
   title: String,
   description: String,
   image: String,
+  websiteUrl: String,
   technologies: [String],
   order: Number,
 }, { timestamps: true });
@@ -46,11 +47,13 @@ const ServiceSchema = new mongoose.Schema({
 const BlogSchema = new mongoose.Schema({
   title: String,
   excerpt: String,
+  content: String,
+  author: String,
   date: String,
   readTime: String,
   category: String,
   image: String,
-  url: String,
+  slug: String,
   order: Number,
 }, { timestamps: true });
 
@@ -117,30 +120,82 @@ const projects = [
   {
     title: "Adventure Outfits E-Commerce Website",
     image: "/projects/project-1.png",
-    description: "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
+    websiteUrl: "https://adventure-outfits.example.com",
+    description: "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication. Built with React and Node.js for seamless shopping experience.",
     technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB", "Express"],
     order: 1,
   },
   {
     title: "Algo Academy E-Learning Platform",
     image: "/projects/project-2.png",
-    description: "A digital platform that is designed to facilitate educational and training experiences through electronic devices like smartphones, tablets, or computers.",
+    websiteUrl: "https://algo-academy.example.com",
+    description: "A digital platform designed to facilitate educational and training experiences through electronic devices like smartphones, tablets, or computers. Features live classes and progress tracking.",
     technologies: ["HTML", "SCSS", "React", "Node", "Express", "MongoDB", "Redux"],
     order: 2,
   },
   {
     title: "Shop Fusion E-Commerce Website",
     image: "/projects/project-3.png",
-    description: "An online garment shop with a wide range of clothing, accessories, and shoes for women, men, kids, and babies.",
+    websiteUrl: "https://shop-fusion.example.com",
+    description: "An online garment shop with a wide range of clothing, accessories, and shoes for women, men, kids, and babies. Includes inventory management and order tracking.",
     technologies: ["HBS", "CSS", "Bootstrap", "Node", "Express", "MongoDB"],
     order: 3,
   },
   {
     title: "Blogging Platform",
     image: "/projects/project-4.png",
-    description: "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-    technologies: ["React", "Meterial UI", "Redux", "Express", "MongoDB"],
+    websiteUrl: "https://blog-platform.example.com",
+    description: "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles. Supports markdown and code highlighting.",
+    technologies: ["React", "Material UI", "Redux", "Express", "MongoDB"],
     order: 4,
+  },
+  {
+    title: "Task Management Dashboard",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+    websiteUrl: "https://task-manager.example.com",
+    description: "A comprehensive task management application with real-time collaboration, team workspaces, and advanced filtering. Perfect for agile teams and project managers.",
+    technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS", "Redux"],
+    order: 5,
+  },
+  {
+    title: "Social Media Analytics Tool",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    websiteUrl: "https://social-analytics.example.com",
+    description: "An analytics dashboard that tracks social media performance across multiple platforms. Provides insights, reports, and recommendations for content optimization.",
+    technologies: ["Next.js", "Python", "PostgreSQL", "Chart.js", "Tailwind CSS"],
+    order: 6,
+  },
+  {
+    title: "Real Estate Property Finder",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+    websiteUrl: "https://property-finder.example.com",
+    description: "A modern real estate platform with advanced search filters, virtual tours, and property listings. Includes mortgage calculator and neighborhood insights.",
+    technologies: ["React", "Node.js", "MongoDB", "Google Maps API", "Stripe"],
+    order: 7,
+  },
+  {
+    title: "Fitness Tracking Mobile App",
+    image: "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=800&q=80",
+    websiteUrl: "https://fitness-tracker.example.com",
+    description: "A comprehensive fitness tracking application with workout plans, nutrition tracking, and progress analytics. Syncs with wearable devices for accurate data.",
+    technologies: ["React Native", "Firebase", "Redux", "Expo", "Chart.js"],
+    order: 8,
+  },
+  {
+    title: "Restaurant Reservation System",
+    image: "https://images.unsplash.com/photo-1504674900967-77d7b8e0ddf7?w=800&q=80",
+    websiteUrl: "https://restaurant-booking.example.com",
+    description: "An online reservation system for restaurants with table management, menu browsing, and customer reviews. Includes SMS notifications and payment integration.",
+    technologies: ["Next.js", "Node.js", "PostgreSQL", "Twilio", "Stripe"],
+    order: 9,
+  },
+  {
+    title: "Weather Forecast Application",
+    image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&q=80",
+    websiteUrl: "https://weather-app.example.com",
+    description: "A real-time weather application with detailed forecasts, weather alerts, and interactive maps. Features location-based weather and historical data analysis.",
+    technologies: ["React", "OpenWeather API", "Mapbox", "Axios", "Tailwind CSS"],
+    order: 10,
   },
 ];
 
@@ -223,31 +278,37 @@ const blogs = [
   {
     title: "Building Scalable Web Applications with Next.js",
     excerpt: "Learn how to create high-performance web applications using Next.js and modern React patterns.",
+    content: "<h2>Introduction</h2><p>Next.js is a powerful React framework that makes building scalable web applications easier than ever. In this comprehensive guide, we'll explore the key features and best practices for building production-ready applications.</p><h2>Key Features</h2><p>Next.js provides server-side rendering, static site generation, API routes, and much more. These features help you build fast, SEO-friendly applications with excellent performance.</p><h2>Best Practices</h2><p>Always optimize your images, use dynamic imports for code splitting, and leverage Next.js caching strategies for better performance.</p>",
+    author: "Shoaib Mushtaq Bhat",
     date: "March 15, 2024",
     readTime: "5 min read",
     category: "Web Development",
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
-    url: "/blog/building-scalable-web-applications-nextjs",
+    slug: "building-scalable-web-applications-nextjs",
     order: 1,
   },
   {
     title: "Mastering React Hooks: A Complete Guide",
     excerpt: "Deep dive into React Hooks and learn how to write cleaner, more efficient React components.",
+    content: "<h2>What are React Hooks?</h2><p>React Hooks are functions that let you use state and other React features in functional components. They revolutionized how we write React code.</p><h2>Common Hooks</h2><p>useState, useEffect, useContext, and useReducer are some of the most commonly used hooks. Each serves a specific purpose in managing component state and side effects.</p><h2>Custom Hooks</h2><p>You can create custom hooks to share stateful logic between components, making your code more reusable and maintainable.</p>",
+    author: "Shoaib Mushtaq Bhat",
     date: "March 10, 2024",
     readTime: "8 min read",
     category: "React",
     image: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800&q=80",
-    url: "/blog/mastering-react-hooks-guide",
+    slug: "mastering-react-hooks-guide",
     order: 2,
   },
   {
     title: "DevOps Best Practices for Modern Applications",
     excerpt: "Explore essential DevOps practices to streamline your development and deployment workflows.",
+    content: "<h2>DevOps Overview</h2><p>DevOps is a set of practices that combines software development and IT operations. It aims to shorten the systems development life cycle and provide continuous delivery.</p><h2>CI/CD Pipelines</h2><p>Continuous Integration and Continuous Deployment are core DevOps practices. They automate testing and deployment, reducing manual errors and speeding up releases.</p><h2>Infrastructure as Code</h2><p>Managing infrastructure through code allows for version control, reproducibility, and easier scaling of your applications.</p>",
+    author: "Shoaib Mushtaq Bhat",
     date: "March 5, 2024",
     readTime: "6 min read",
     category: "DevOps",
     image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80",
-    url: "https://example.com/blog/devops-best-practices",
+    slug: "devops-best-practices-modern-applications",
     order: 3,
   },
 ];
@@ -289,7 +350,7 @@ const siteSettings = {
   linkedinUrl: "https://www.linkedin.com/in/shoaib-mushtaq-bhat-9a2666190/",
   instagramUrl: "https://www.instagram.com/shuaib_kashmiri_/",
   facebookUrl: "https://www.facebook.com/mohammadshuaib786/",
-  yearsOfExperience: "3+",
+  yearsOfExperience: "2+",
   projectsCompleted: "20+",
 };
 
@@ -309,7 +370,7 @@ async function seedDatabase() {
     console.log('Cleared existing data');
 
     // Create admin user
-    const hashedPassword = await bcrypt.hash('Mynameisold007', 10);
+    const hashedPassword = await bcrypt.hash('admin@123', 10);
     await User.create({
       email: 'admin@shoaibcodes.online',
       password: hashedPassword,

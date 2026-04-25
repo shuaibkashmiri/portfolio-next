@@ -11,11 +11,13 @@ export default function BlogManager() {
   const [formData, setFormData] = useState({
     title: "",
     excerpt: "",
+    content: "",
+    author: "",
     date: "",
     readTime: "",
     category: "",
     image: "",
-    url: "",
+    slug: "",
     order: 0,
   });
   const [modal, setModal] = useState({ isOpen: false, title: "", message: "", type: "success" });
@@ -35,6 +37,25 @@ export default function BlogManager() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Generate slug from title
+  const generateSlug = (title) => {
+    return title
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+  };
+
+  const handleTitleChange = (e) => {
+    const title = e.target.value;
+    setFormData({ 
+      ...formData, 
+      title,
+      slug: !editingId ? generateSlug(title) : formData.slug
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -68,11 +89,13 @@ export default function BlogManager() {
     setFormData({
       title: blog.title,
       excerpt: blog.excerpt,
+      content: blog.content,
+      author: blog.author,
       date: blog.date,
       readTime: blog.readTime,
       category: blog.category,
       image: blog.image,
-      url: blog.url,
+      slug: blog.slug,
       order: blog.order,
     });
   };
@@ -101,7 +124,7 @@ export default function BlogManager() {
 
   const resetForm = () => {
     setEditingId(null);
-    setFormData({ title: "", excerpt: "", date: "", readTime: "", category: "", image: "", url: "", order: 0 });
+    setFormData({ title: "", excerpt: "", content: "", author: "", date: "", readTime: "", category: "", image: "", slug: "", order: 0 });
   };
 
   if (loading) return <div className="text-white">Loading...</div>;
@@ -125,15 +148,30 @@ export default function BlogManager() {
             type="text"
             placeholder="Title"
             value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            onChange={handleTitleChange}
             className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
             required
           />
           <textarea
-            placeholder="Excerpt"
+            placeholder="Excerpt (short summary)"
             value={formData.excerpt}
             onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-            className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 h-24"
+            className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 h-20"
+            required
+          />
+          <textarea
+            placeholder="Full Blog Content (HTML supported)"
+            value={formData.content}
+            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+            className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 h-40"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Author Name"
+            value={formData.author}
+            onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+            className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
             required
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -175,14 +213,19 @@ export default function BlogManager() {
               Use external URL (e.g., https://images.unsplash.com/...) or local path (e.g., /blog/image.jpg)
             </p>
           </div>
-          <input
-            type="text"
-            placeholder="URL (internal: /blog/slug or external: https://...)"
-            value={formData.url}
-            onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-            className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
-            required
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="Slug (auto-generated from title)"
+              value={formData.slug}
+              onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+              className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
+              required
+            />
+            <p className="text-gray-400 text-xs mt-2">
+              URL-friendly slug (e.g., my-blog-post). Auto-generated from title when creating new blog.
+            </p>
+          </div>
           <input
             type="number"
             placeholder="Order"
@@ -209,7 +252,8 @@ export default function BlogManager() {
             <div className="flex justify-between items-start mb-4">
               <div>
                 <h3 className="text-xl font-bold text-white">{blog.title}</h3>
-                <p className="text-purple-400 text-sm">{blog.category}</p>
+                <p className="text-purple-400 text-sm">/{blog.slug}</p>
+                <p className="text-gray-400 text-xs mt-1">{blog.category} • By {blog.author}</p>
               </div>
               <div className="flex gap-2">
                 <button onClick={() => handleEdit(blog)} className="p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
@@ -220,7 +264,7 @@ export default function BlogManager() {
                 </button>
               </div>
             </div>
-            <p className="text-gray-300 mb-2">{blog.excerpt}</p>
+            <p className="text-gray-300 mb-2 line-clamp-2">{blog.excerpt}</p>
             <p className="text-gray-400 text-sm">{blog.date} • {blog.readTime}</p>
           </div>
         ))}

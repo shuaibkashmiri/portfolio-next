@@ -3,22 +3,18 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaClock, FaCalendar, FaArrowRight } from "react-icons/fa";
-import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
 const BlogCard = ({ blog, index }) => {
-  const isExternalUrl = (url) => {
-    return url.startsWith('http://') || url.startsWith('https://');
+  const handleBlogClick = (e) => {
+    e.preventDefault();
+    if (blog.slug) {
+      window.location.href = `/blog/${blog.slug}`;
+    }
   };
-
-  const isExternal = isExternalUrl(blog.url);
-  const BlogLink = isExternal ? 'a' : Link;
-  const linkProps = isExternal 
-    ? { href: blog.url, target: "_blank", rel: "noopener noreferrer" }
-    : { href: blog.url };
 
   return (
     <motion.article
@@ -26,7 +22,8 @@ const BlogCard = ({ blog, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-purple-500/30 h-full"
+      className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-purple-500/30 h-full cursor-pointer"
+      onClick={handleBlogClick}
     >
       {/* Blog Image */}
       <div className="relative h-48 overflow-hidden bg-gray-800">
@@ -43,9 +40,9 @@ const BlogCard = ({ blog, index }) => {
         {/* Author */}
         <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5 border border-white/10">
           <div className="w-6 h-6 rounded-full bg-purple-600/20 flex items-center justify-center border border-purple-500/30">
-            <span className="text-purple-400 text-xs font-bold">SM</span>
+            <span className="text-purple-400 text-xs font-bold">{(blog.author || "A").charAt(0)}</span>
           </div>
-          <span className="text-white text-xs font-medium">Shoaib Mushtaq Bhat</span>
+          <span className="text-white text-xs font-medium">{blog.author || "Author"}</span>
         </div>
       </div>
 
@@ -70,13 +67,10 @@ const BlogCard = ({ blog, index }) => {
           {blog.excerpt}
         </p>
 
-        <BlogLink 
-          {...linkProps}
-          className="flex items-center gap-2 text-purple-400 text-sm font-medium group-hover:gap-3 transition-all duration-300"
-        >
+        <div className="flex items-center gap-2 text-purple-400 text-sm font-medium group-hover:gap-3 transition-all duration-300">
           Read More
           <FaArrowRight className="text-xs" />
-        </BlogLink>
+        </div>
       </div>
     </motion.article>
   );
@@ -85,13 +79,21 @@ const BlogCard = ({ blog, index }) => {
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [displayCount, setDisplayCount] = useState(3); // Show 1 row (3 cols on desktop, 2 cols on tablet)
+  const blogsPerBatch = 3;
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const res = await fetch("/api/blogs", { cache: 'no-store' });
         const data = await res.json();
-        setBlogs(data);
+        // Sort blogs by date (latest first)
+        const sortedBlogs = data.sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB - dateA;
+        });
+        setBlogs(sortedBlogs);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       } finally {
@@ -100,6 +102,13 @@ const Blogs = () => {
     };
     fetchBlogs();
   }, []);
+
+  const displayedBlogs = blogs.slice(0, displayCount);
+  const hasMore = displayCount < blogs.length;
+
+  const handleLoadMore = () => {
+    setDisplayCount(prev => prev + blogsPerBatch);
+  };
 
   if (loading) {
     return (
@@ -162,11 +171,30 @@ const Blogs = () => {
           </div>
 
           {/* Desktop Grid */}
-          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs.map((blog, index) => (
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {displayedBlogs.map((blog, index) => (
               <BlogCard key={blog._id} blog={blog} index={index} />
             ))}
           </div>
+
+          {/* Load More Button */}
+          {hasMore && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex justify-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleLoadMore}
+                className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors"
+              >
+                Load More Blogs
+              </motion.button>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </div>
