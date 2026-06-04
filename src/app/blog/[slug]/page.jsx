@@ -1,19 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaCalendar, FaClock, FaTag } from "react-icons/fa";
 
 export default function BlogPage() {
   const params = useParams();
+  const router = useRouter();
   const slug = params.slug;
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // Reset state when slug changes
+    setBlog(null);
+    setLoading(true);
+    setError(null);
+
     const fetchBlog = async () => {
       try {
         const res = await fetch(`/api/blogs?slug=${slug}`, { cache: 'no-store' });
@@ -43,6 +48,11 @@ export default function BlogPage() {
     }
   }, [slug]);
 
+  const handleBack = (e) => {
+    e.preventDefault();
+    router.push("/#blogs");
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -60,10 +70,13 @@ export default function BlogPage() {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Blog Not Found</h1>
           <p className="text-gray-400 mb-8">{error || "The blog you're looking for doesn't exist."}</p>
-          <Link href="/#blogs" className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors">
+          <button 
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors"
+          >
             <FaArrowLeft />
             Back to Blogs
-          </Link>
+          </button>
         </div>
       </div>
     );
@@ -73,10 +86,13 @@ export default function BlogPage() {
     <div className="min-h-screen bg-black pt-20">
       {/* Back Button */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <Link href="/#blogs" className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors">
+        <button 
+          onClick={handleBack}
+          className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+        >
           <FaArrowLeft />
           Back to Blogs
-        </Link>
+        </button>
       </div>
 
       {/* Blog Header */}
@@ -141,10 +157,13 @@ export default function BlogPage() {
 
       {/* Back to Blogs CTA */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 pt-12 border-t border-white/10">
-        <Link href="/#blogs" className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors">
+        <button 
+          onClick={handleBack}
+          className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors"
+        >
           <FaArrowLeft />
           Back to All Blogs
-        </Link>
+        </button>
       </div>
     </div>
   );

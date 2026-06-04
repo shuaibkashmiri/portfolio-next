@@ -4,8 +4,11 @@ import React, { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRouter, usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [settings, setSettings] = useState(null);
@@ -36,14 +39,51 @@ const Navbar = () => {
   };
 
   const handleNavClick = (e, href, text) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
     if (text === "Contact") {
-      e.preventDefault();
-      // Trigger contact modal
-      const openEvent = new CustomEvent('openContactModal');
-      window.dispatchEvent(openEvent);
-      setIsOpen(false);
+      // If on blog page, go home first then open modal
+      if (pathname.startsWith('/blog/')) {
+        router.push('/');
+        setTimeout(() => {
+          const openEvent = new CustomEvent('openContactModal');
+          window.dispatchEvent(openEvent);
+        }, 500);
+      } else {
+        // Trigger contact modal
+        const openEvent = new CustomEvent('openContactModal');
+        window.dispatchEvent(openEvent);
+      }
     } else {
-      setIsOpen(false);
+      // If on blog page, navigate to home page first
+      if (pathname.startsWith('/blog/')) {
+        router.push('/');
+        // Wait for navigation then scroll to section
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
+      } else {
+        // Same page scroll
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (pathname === '/') {
+      // Already on home, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Navigate to home
+      router.push('/');
     }
   };
 
@@ -70,7 +110,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20 w-full overflow-x-hidden">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 cursor-pointer" onClick={handleLogoClick}>
             {isExternalLogo ? (
               <img
                 src={logoSrc}

@@ -166,6 +166,15 @@ export default function BlogManager() {
             className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 h-40"
             required
           />
+          {formData.content && (
+            <div className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg">
+              <p className="text-gray-400 text-xs mb-2 font-semibold">Content Preview:</p>
+              <div 
+                className="text-gray-300 text-sm prose prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: formData.content }}
+              />
+            </div>
+          )}
           <input
             type="text"
             placeholder="Author Name"
