@@ -26,14 +26,15 @@ export default function Home() {
     // Fetch all data in parallel
     const fetchAllData = async () => {
       try {
-        const [settings, experiences, projects, services, blogs, technologies] = await Promise.all([
-          fetch("/api/settings").then(res => res.json()),
-          fetch("/api/experiences").then(res => res.json()),
-          fetch("/api/projects").then(res => res.json()),
-          fetch("/api/services").then(res => res.json()),
-          fetch("/api/blogs").then(res => res.json()),
-          fetch("/api/technologies").then(res => res.json()),
-        ]);
+        const [settings, experiences, projects, services, blogs, technologies] =
+          await Promise.all([
+            fetch("/api/settings").then((res) => res.json()),
+            fetch("/api/experiences").then((res) => res.json()),
+            fetch("/api/projects").then((res) => res.json()),
+            fetch("/api/services").then((res) => res.json()),
+            fetch("/api/blogs").then((res) => res.json()),
+            fetch("/api/technologies").then((res) => res.json()),
+          ]);
 
         // Mark all data as loaded
         setDataLoaded({
@@ -50,7 +51,7 @@ export default function Home() {
           setIsLoading(false);
         }, 500);
       } catch (error) {
-        console.error("Error loading data:", error);
+        console.error("Error loading the data:", error);
         // Still hide loading screen even if there's an error
         setTimeout(() => {
           setIsLoading(false);
@@ -66,7 +67,7 @@ export default function Home() {
       <AnimatePresence mode="wait">
         {isLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>
-      
+
       <div className="w-full">
         <Hero />
         <Experience />
